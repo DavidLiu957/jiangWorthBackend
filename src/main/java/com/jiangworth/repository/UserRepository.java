@@ -1,15 +1,16 @@
 package com.jiangworth.repository;
 
-import com.jiangworth.entity.UserEntity;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import com.jiangworth.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, String> {
 
-    Optional<UserEntity> findByUserId(String userId);
-    
-    boolean existsByUserId(String userId);
+	Optional<UserEntity> findByUserId(String userId);
+
+	boolean existsByUserId(Long userId);
 }

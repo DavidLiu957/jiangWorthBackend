@@ -25,7 +25,7 @@ public class UserService {
 	}
 
 	@Transactional(readOnly = true)
-	public UserRes getUserById(Long id) {
+	public UserRes getUserById(String id) {
 		UserEntity entity = userRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 		return convertToRes(entity);
@@ -42,7 +42,7 @@ public class UserService {
 	}
 
 	@Transactional
-	public UserRes updateUser(Long id, UserReq req) {
+	public UserRes updateUser(String id, UserReq req) {
 		UserEntity entity = userRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
@@ -54,11 +54,11 @@ public class UserService {
 	}
 
 	@Transactional
-	public void deleteUser(Long id) {
-		if (!userRepository.existsById(id)) {
-			throw new RuntimeException("User not found with id: " + id);
+	public void deleteUser(String userId) {
+		if (!userRepository.existsById(userId)) {
+			throw new RuntimeException("User not found with id: " + userId);
 		}
-		userRepository.deleteById(id);
+		userRepository.deleteById(userId);
 	}
 
 	private UserRes convertToRes(UserEntity entity) {
