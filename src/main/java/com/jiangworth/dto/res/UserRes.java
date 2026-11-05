@@ -1,5 +1,17 @@
 package com.jiangworth.dto.res;
 
-public class UserRes {
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
+public class UserRes {
+	
+	@NotEmpty
+	private String userId;
+	
+	private String username;
+	
+	private String email;
 }
