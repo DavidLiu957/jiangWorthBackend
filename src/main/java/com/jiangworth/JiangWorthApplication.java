@@ -1,0 +1,12 @@
+package com.jiangworth;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class JiangWorthApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(JiangWorthApplication.class, args);
+	}
+}

@@ -1,0 +1,82 @@
+# ==========================================
+# 作業系統暫存檔 (OS generated files)
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# 編輯器與 IDE 設定 (IDEs & Editors)
+# ==========================================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# ==========================================
+# Java / Spring Boot / Maven / Gradle
+# ==========================================
+target/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven 記錄與外掛暫存
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle 建置暫存
+.gradle/
+build/
+
+# ==========================================
+# Node.js / Angular / 前端建置
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+tmp/
+.angular/cache/
+
+# ==========================================
+# 日誌與執行階段資料 (Logs & Runtime)
+# ==========================================
+*.log
+*.sqlite
+logs/
+
+# ==========================================
+# 機密與環境變數 (Secrets & Environment)
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key

@@ -1,0 +1,37 @@
+server:
+  port: 8080                      # 自訂執行 Port（預設即為 8080）
+  servlet:
+    context-path: /api            # 選填：統一全站 API 前綴，例如 http://localhost:8080/api/...
+
+spring:
+  application:
+    name: jiang-worth-backend
+
+  # 資料庫連線配置
+  datasource:
+  # 建置後開啟
+    # MSSQL 範例：jdbc:sqlserver://localhost:1433;databaseName=jiang_worth_db;encrypt=false;trustServerCertificate=true
+    # MySQL 範例：jdbc:mysql://localhost:3306/jiang_worth_db?useSSL=false&serverTimezone=Asia/Taipei&characterEncoding=UTF-8
+    #url: jdbc:sqlserver://localhost:1433;databaseName=jiang_worth_db;encrypt=false;trustServerCertificate=true
+    #username: sa
+    #password: YourPassword123
+    #driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  # TODO 建置後移除
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  # JPA / Hibernate 配置
+  jpa:
+    show-sql: true                # 控制台印出執行的 SQL
+    properties:
+      hibernate:
+        format_sql: true          # 排版 SQL 便於排查
+    hibernate:
+      ddl-auto: update            # 啟動時根據 Entity 自動更新表結構 (可選 none, validate, update)
+
+# 日誌層級控制
+logging:
+  level:
+    com.jiangworth: debug
