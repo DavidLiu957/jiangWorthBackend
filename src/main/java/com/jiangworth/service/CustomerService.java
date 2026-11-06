@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jiangworth.dto.req.UserReq;
-import com.jiangworth.dto.res.UserRes;
-import com.jiangworth.entity.UserEntity;
-import com.jiangworth.repository.UserRepository;
+import com.jiangworth.dto.req.CustomerReq;
+import com.jiangworth.dto.res.CustomerRes;
+import com.jiangworth.entity.CustomerEntity;
+import com.jiangworth.repository.CustomerRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,52 +17,70 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerService {
 
-	private final UserRepository userRepository;
+	private final CustomerRepository customerRepository;
 
 	@Transactional(readOnly = true)
-	public List<UserRes> getAllUsers() {
-		return userRepository.findAll().stream().map(this::convertToRes).collect(Collectors.toList());
+	public List<CustomerRes> getAllCustomers() {
+		return customerRepository.findAll().stream().map(this::convertToRes).collect(Collectors.toList());
 	}
 
 	@Transactional(readOnly = true)
-	public UserRes getUserById(String userId) {
-		UserEntity entity = userRepository.findById(userId)
-				.orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+	public CustomerRes getCustomerById(String idStr) {
+		Long customerId = Long.parseLong(idStr);
+		CustomerEntity entity = customerRepository.findById(customerId)
+				.orElseThrow(() -> new RuntimeException("Customer not found with id: " + customerId));
 		return convertToRes(entity);
 	}
 
 	@Transactional
-	public UserRes createUser(UserReq req) {
-		UserEntity entity = new UserEntity();
-		entity.setUsername(req.getUsername());
-		entity.setEmail(req.getEmail());
+	public CustomerRes createCustomer(CustomerReq req) {
+		CustomerEntity entity = new CustomerEntity();
+		entity.setCustomerName(req.getCustomerName());
+		entity.setBirthday(req.getBirthday());
+		entity.setSex(req.getSex());
+		entity.setPhone(req.getPhone());
+		entity.setAddress(req.getAddress());
+		entity.setRiskProfile(req.getRiskProfile());
+		entity.setNote(req.getNote());
+		entity.setIsArchived(Boolean.TRUE);
 
-		UserEntity saved = userRepository.save(entity);
+		CustomerEntity saved = customerRepository.save(entity);
 		return convertToRes(saved);
 	}
 
 	@Transactional
-	public UserRes updateUser(String userId, UserReq req) {
-		UserEntity entity = userRepository.findById(userId)
-				.orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+	public CustomerRes updateCustomer(String idStr, CustomerReq req) {
+		Long customerId = Long.parseLong(idStr);
+		CustomerEntity entity = customerRepository.findById(customerId)
+				.orElseThrow(() -> new RuntimeException("Customer not found with id: " + customerId));
 
-		entity.setUsername(req.getUsername());
-		entity.setEmail(req.getEmail());
+		entity.setCustomerName(req.getCustomerName());
+		entity.setBirthday(req.getBirthday());
+		entity.setSex(req.getSex());
+		entity.setPhone(req.getPhone());
+		entity.setAddress(req.getAddress());
+		entity.setRiskProfile(req.getRiskProfile());
+		entity.setNote(req.getNote());
 
-		UserEntity updated = userRepository.save(entity);
+		CustomerEntity updated = customerRepository.save(entity);
 		return convertToRes(updated);
 	}
 
 	@Transactional
-	public void deleteUser(String userId) {
-		if (!userRepository.existsById(userId)) {
-			throw new RuntimeException("User not found with id: " + userId);
-		}
-		userRepository.deleteById(userId);
+	public void deleteCustomer(String idStr) {
+		Long customerId = Long.parseLong(idStr);
+		CustomerEntity entity = customerRepository.findById(customerId)
+				.orElseThrow(() -> new RuntimeException("Customer not found with id: " + customerId));
+
+		entity.setIsArchived(Boolean.TRUE);
+
+		customerRepository.save(entity);
 	}
 
-	private UserRes convertToRes(UserEntity entity) {
-		return UserRes.builder().userId(entity.getUserId()).username(entity.getUsername()).email(entity.getEmail())
-				.build();
+	private CustomerRes convertToRes(CustomerEntity entity) {
+		return CustomerRes.builder().customerId(entity.getCustomerId()).customerName(entity.getCustomerName())
+				.birthday(entity.getBirthday()).sex(entity.getSex()).phone(entity.getPhone())
+				.address(entity.getAddress()).riskProfile(entity.getRiskProfile()).build();
 	}
+
 }

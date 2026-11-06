@@ -9,7 +9,7 @@ import lombok.Data;
 public class UserRes {
 	
 	@NotEmpty
-	private String userId;
+	private Long userId;
 	
 	private String username;
 	
