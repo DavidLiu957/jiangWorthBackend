@@ -78,7 +78,7 @@ public class CustomerService {
 	}
 
 	private CustomerRes convertToRes(CustomerEntity entity) {
-		return CustomerRes.builder().customerId(entity.getCustomerId()).customerName(entity.getCustomerName())
+		return CustomerRes.builder().customerId(entity.getId()).customerName(entity.getCustomerName())
 				.birthday(entity.getBirthday()).sex(entity.getSex()).phone(entity.getPhone())
 				.address(entity.getAddress()).riskProfile(entity.getRiskProfile()).build();
 	}

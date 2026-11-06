@@ -65,7 +65,7 @@ public class UserService {
 	}
 
 	private UserRes convertToRes(UserEntity entity) {
-		return UserRes.builder().userId(entity.getUserId()).username(entity.getUsername()).email(entity.getEmail())
+		return UserRes.builder().userId(entity.getId()).username(entity.getUsername()).email(entity.getEmail())
 				.build();
 	}
 }

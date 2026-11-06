@@ -21,7 +21,7 @@ public class CustomerEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long customerId;
+	private Long id;
 
 	private String customerName;
 	// 生日
