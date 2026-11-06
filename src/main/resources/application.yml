@@ -24,12 +24,10 @@ spring:
     password:
   # JPA / Hibernate 配置
   jpa:
-    show-sql: true                # 控制台印出執行的 SQL
-    properties:
-      hibernate:
-        format_sql: true          # 排版 SQL 便於排查
-    hibernate:
-      ddl-auto: update            # 啟動時根據 Entity 自動更新表結構 (可選 none, validate, update)
+    show-sql: true                			# 控制台印出執行的 SQL
+    properties.hibernate.format_sql: true   # 排版 SQL 便於排查
+    hibernate.ddl-auto: update              # 啟動時根據 Entity 自動更新表結構 (可選 none, validate, update)
+    defer-datasource-initialization: true   # data.sql 需開啟下面這行確保 SQL 執行順序正確
 
 # 日誌層級控制
 logging:

@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "customers")
+@Table(name = "insurance_product")
 public class InsuranceProductEntity {
 
 	@Id
